@@ -1,0 +1,24 @@
+.menu-section {
+    background-color: #f8f9fa;
+    padding: 10px 0;
+    text-align: center;
+}
+.menu-link {
+    text-decoration: none;
+    color: #343a40;
+    font-size: 18px;
+    margin: 0 10px;
+}
+.menu-list {
+    list-style: none;
+    padding: 0;
+}
+.menu-item {
+    display: inline;
+}
+.menu-item:not(:first-child) {
+    margin-left: 20px;
+}
+.menu-link:hover {
+    color: #007bff;
+}
