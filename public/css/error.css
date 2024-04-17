@@ -1,0 +1,5 @@
+.error-message {
+    color: #dc3545; /* Cor vermelha para indicar erro */
+    font-size: 14px; /* Tamanho da fonte */
+    margin-top: 5px; /* Margem superior para separar do campo anterior */
+}
