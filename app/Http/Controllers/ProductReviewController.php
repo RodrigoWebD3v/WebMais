@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\ProductReviews;
 use Illuminate\Http\Request;
 
+
 class ProductReviewController extends Controller
 {
     /**
@@ -31,7 +32,6 @@ class ProductReviewController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -43,29 +43,28 @@ class ProductReviewController extends Controller
 
         $comments = $data['comments'];
 
-        return $data;
+        if ($comments) {
+            foreach ($comments as $comment) {
 
-//        if ($comments) {
-//            foreach ($comments as $comment) {
-//                $inserted = false;
-//
-//                if (!ProductReviews::where('comment', $comment)->where('product_id', $productId)->exists()) {
-//                    while (!$inserted) {
-//                        try {
-//                            $resposta = ProductReviews::create(["product_id" => $productId, "comment" => $comment]);
-//                            error_log("passando no loop");
-//                            $inserted = true;
-//                            return $resposta;
-//
-//                        } catch (\Exception $exception) {
-//
-//                        }
-//                    }
-//                }
-//            }
-//
-//        }
-        //  return response()->json(['message' => 'Comments received successfully'], 200);
+                $inserted = false;
+
+                if (!ProductReviews::where('comment', $comment)->where('product_id', $productId)->exists()) {
+                    while (!$inserted) {
+                        try {
+                            $resposta = ProductReviews::create(["product_id" => $productId, "comment" => $comment]);
+
+                            $inserted = true;
+
+                        } catch (\Exception $exception) {
+
+                        }
+                    }
+                }
+            }
+
+        }
+
+        return response()->json(['message' => 'Comments received successfully '. $comments], 200);
     }
 
 

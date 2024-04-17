@@ -48,11 +48,12 @@
             <label for="comment">Comentario</label>
             <textarea id="comment" name="comment" rows="4" cols="50"></textarea>
             <button type="button" class="a-link" onClick="addComment()">Adicionar Comentario</button>
+{{--            <button type="button" class="a-link" onClick="envirparabase()">Enviar para a base</button>--}}
             @if($errors->has('comment'))
                 <p class="error-message"> {{ $errors->first('comment') }}</p>
             @endif
         </section>
-        <details>
+        <details >
             <summary>Mostrar Comentários</summary>
             <table class="comments-table form-field-comments" id="comments-table">
                 <thead>
@@ -72,71 +73,5 @@
             </details>
         <button type="submit" onclick="CreateProduct()">Cadastrar Produto</button>
     </form>
-    <script>
-        function addComment() {
-
-            var table = document.getElementById("comments-table").getElementsByTagName('tbody')[0];
-
-            var comment = document.getElementById("comment")
-
-            if(comment.value){
-                var newRow = table.insertRow();
-
-                var cell1 = newRow.insertCell(0);
-
-                cell1.innerHTML = comment.value;
-            }
-
-            comment.value ="";
-        }
-
-        function CreateProduct(){
-            var comments= [];
-
-            var tabel = document.getElementById('comment-table');
-
-            var id = document.getElementById('id');
-
-            var lines = tabel.querySelectorAll('tbody tr');
-
-            lines.forEach(function(line) {
-
-                var comment = line.cells[0].textContent;
-
-                comments.push({ comments: comment});
-            });
-
-            var data = {
-                id: id.value,
-                comments: comments
-            };
-
-
-
-            fetch('http://localhost:8000/api/comment', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-
-                },
-                body: JSON.stringify(  data )
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Erro ao fazer a solicitação');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log(data);
-                    window.alert(JSON.stringify(data, null, 2))
-                })
-                .catch(error => {
-                    console.error(error);
-                });
-
-        }
-
-    </script>
 </section>
 @endsection
