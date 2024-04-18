@@ -36,7 +36,7 @@
                         <form action="{{ route('product.delete',['id' => $product['id']])}}" method="post">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="button-excluir">Excluir</button>
+                            <button type="submit" class="button-delete">Excluir</button>
                         </form>
                     </td>
                 </tr>

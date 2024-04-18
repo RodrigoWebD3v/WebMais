@@ -15,9 +15,11 @@ class ProductController extends Controller
      */
     public function index()
     {
+        // Recupera todos os produtos com seus detalhes relacionados
         $products = Product::with('details')->get();
 
-        return view('app.products.list', compact('products'));
+        // Retorna a view listando os produtos
+        return view('app.product.list', compact('products'));
     }
 
     /**
@@ -27,6 +29,7 @@ class ProductController extends Controller
      */
     public function create()
     {
+        // Retorna a view para criar um novo produto
         return view('app.product.create');
     }
 
@@ -38,6 +41,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        // Regras de validação para os campos do formulário de criação
         $rule = [
             'name' => 'required|min:3|max:40|unique:products',
             'id' => 'required|min:1|max:2000|unique:products',
@@ -47,7 +51,9 @@ class ProductController extends Controller
             'value'  => 'required|numeric',
         ];
 
+        // Mensagens de feedback para as regras de validação
         $feedback = [
+            // Mensagens de erro específicas para cada regra
             'name.required' => 'O campo Nome é obrigatório',
             'id.required' => 'O campo Código é obrigatório',
             'name.unique' => 'Este Nome ja esta sendo usado',
@@ -67,30 +73,23 @@ class ProductController extends Controller
             'value.numeric' =>  'O campo  Valor permite apenas numeros',
         ];
 
+        // Valida os dados do formulário de acordo com as regras e feedback definidos
         $request->validate($rule, $feedback);
 
-
+        // Cria um novo produto
         Product::create(['name'=>request('name'),'id'=>request('id')]);
 
-        ProductDetails::create(['product_id'=>request('id'),
+        // Cria os detalhes do produto
+        ProductDetails::create([
+            'product_id'=>request('id'),
             'height'=>request('height'),
             'width'=>request('width'),
             'depth'=>request('depth'),
-            'value'=>request('value')]);
+            'value'=>request('value')
+        ]);
 
-
+        // Redireciona para a listagem de produtos após a criação bem-sucedida
         return redirect()->route('products.list');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-
     }
 
     /**
@@ -101,9 +100,10 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
+        // Recupera o produto com seus detalhes e avaliações relacionadas para edição
         $product = Product::with(['details', 'reviews'])->find($id);
 
-
+        // Retorna a view para editar o produto
         return  view('app.product.edit', compact('product'));
     }
 
@@ -116,6 +116,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        // Regras de validação para os campos do formulário de edição
         $rule = [
             'name' => 'required|min:3|max:40|',
             'height' => 'required|numeric',
@@ -124,7 +125,9 @@ class ProductController extends Controller
             'value'  => 'required|numeric',
         ];
 
+        // Mensagens de feedback para as regras de validação
         $feedback = [
+            // Mensagens de erro específicas para cada regra
             'name.required' => 'O campo Nome é obrigatório',
             'height.required' => 'O campo Altura é obrigatório',
             'width.required' => 'O campo Largura é obrigatório',
@@ -141,26 +144,20 @@ class ProductController extends Controller
             'value.numeric' =>  'O campo  Valor permite apenas numeros',
         ];
 
+        // Valida os dados do formulário de acordo com as regras e feedback definidos
         $request->validate($rule, $feedback);
 
+        // Atualiza o produto e seus detalhes com os novos dados fornecidos
+        $product = Product::with('details')->find($id);
+        $product->name = $request->get('name');
+        $product->details->height = $request->get('height');
+        $product->details->width = $request->get('width');
+        $product->details->depth = $request->get('depth');
+        $product->details->value = $request->get('value');
+        $product->details->save();
+        $product->save();
 
-            $product = Product::with('details')->find($id);
-
-            $product->name = $request->get('name');
-
-            $product->details->height = $request->get('height');
-
-            $product->details->width = $request->get('width');
-
-            $product->details->depth = $request->get('depth');
-
-            $product->details->value = $request->get('value');
-
-            $product->details->save();
-
-            $product -> save();
-
-
+        // Redireciona para a listagem de produtos após a atualização bem-sucedida
         return redirect()->route('products.list');
     }
 
@@ -172,7 +169,8 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::with('details')->with('reviews')->find($id);
+        // Recupera o produto com seus detalhes e avaliações relacionadas para exclusão
+        $product = Product::with(['details', 'reviews'])->find($id);
 
         // Verifica se o produto foi encontrado
         if (!$product) {
@@ -188,8 +186,7 @@ class ProductController extends Controller
         // Exclui o produto
         $product->delete();
 
-
+        // Redireciona para a listagem de produtos após a exclusão bem-sucedida
         return redirect()->route('products.list')->with('success', 'Produto excluído com sucesso.');
     }
-
 }

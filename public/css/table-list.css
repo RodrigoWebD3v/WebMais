@@ -1,15 +1,13 @@
 .sectionList {
     text-align: center;
-    max-width: 80%;
+    max-width: 100%;
     margin: auto;
+    min-height: 1000px;
 }
 
 .tableList {
-    width: 100%;
+    width: 80%;
     text-align: center;
-    border-collapse: collapse;
-    border-radius: 10px;
-    overflow: hidden;
     margin: auto;
 }
 

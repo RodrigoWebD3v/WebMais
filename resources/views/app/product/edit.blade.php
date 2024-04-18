@@ -3,8 +3,8 @@
 @section('title', 'Produtos')
 @section('content')
 
-    <section style="max-width: 600px; margin: 0 auto; padding: 20px;">
-        <h1 style="margin-top: 20px;">Cadastro de Produto</h1>
+    <section class="sectionForm">
+        <h1 class="h1Form">Cadastro de Produto</h1>
         <form action="{{ route('product.update', ['id' => $product['id']])}}" method="POST">
             @csrf
             @method('PUT')

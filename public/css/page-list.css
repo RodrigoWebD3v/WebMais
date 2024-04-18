@@ -17,7 +17,7 @@
 .menu-item:hover .menu-link {
     color: white;
 }
-.button-excluir{
+.button-delete{
         padding: 5px 20px;
         background-color: #ef1934;
         color: #fff;
@@ -26,7 +26,7 @@
         border-radius: 10px;
 }
 
-.button-excluir:hover {
+.button-delete:hover {
     background-color: #671414;
 }
 .a-button-edit{
