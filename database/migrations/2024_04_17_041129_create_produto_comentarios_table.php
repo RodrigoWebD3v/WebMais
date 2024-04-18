@@ -19,6 +19,7 @@ class CreateProdutoComentariosTable extends Migration
             $table->foreign('product_id')->references('id')->on('products');
             $table->string('comment');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

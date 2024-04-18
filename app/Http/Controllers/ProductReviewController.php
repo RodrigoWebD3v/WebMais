@@ -56,7 +56,6 @@ class ProductReviewController extends Controller
                             $inserted = true;
 
                         } catch (\Exception $exception) {
-
                         }
                     }
                 }

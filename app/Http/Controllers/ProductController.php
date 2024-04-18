@@ -15,7 +15,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('app.product.list');
+        $products = Product::with('details')->get();
+
+        return view('app.product.list', compact('products'));
     }
 
     /**
@@ -38,10 +40,11 @@ class ProductController extends Controller
     {
         $rule = [
             'name' => 'required|min:3|max:40|unique:products',
-            'id' => 'required|min:3|max:2000|unique:products',
+            'id' => 'required|min:1|max:2000|unique:products',
             'height' => 'required|numeric',
             'width'  => 'required|numeric',
             'depth'  => 'required|numeric',
+            'value'  => 'required|numeric',
         ];
 
         $feedback = [
@@ -52,6 +55,7 @@ class ProductController extends Controller
             'height.required' => 'O campo Altura é obrigatório',
             'width.required' => 'O campo Largura é obrigatório',
             'depth.required' => 'O campo Profundidade é obrigatório',
+            'value.required' => 'O campo Valor é obrigatório',
             'name.min' => 'O campo Nome deve ter no mínimo 3 caracteres',
             'id.min' => 'O campo Código deve ter no mínimo 3 caracteres',
             'name.max' => 'O campo Nome do Produto deve ter no máximo 40 caracteres',
@@ -60,6 +64,7 @@ class ProductController extends Controller
             'height.numeric' =>  'O campo Altura permite apenas numeros',
             'width.numeric' =>  'O campo  Largura permite apenas numeros',
             'depth.numeric' =>  'O campo  Profundidade permite apenas numeros',
+            'value.numeric' =>  'O campo  Valor permite apenas numeros',
         ];
 
         $request->validate($rule, $feedback);
@@ -70,7 +75,9 @@ class ProductController extends Controller
         ProductDetails::create(['product_id'=>request('id'),
             'height'=>request('height'),
             'width'=>request('width'),
-            'depth'=>request('depth')]);
+            'depth'=>request('depth'),
+            'value'=>request('value')]);
+
 
         return redirect()->route('products.list');
     }
@@ -94,7 +101,10 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::with(['details', 'reviews'])->find($id);
+
+
+        return  view('app.product.edit', compact('product'));
     }
 
     /**
@@ -104,9 +114,54 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, string $id)
     {
-        //
+        $rule = [
+            'name' => 'required|min:3|max:40|',
+            'height' => 'required|numeric',
+            'width'  => 'required|numeric',
+            'depth'  => 'required|numeric',
+            'value'  => 'required|numeric',
+        ];
+
+        $feedback = [
+            'name.required' => 'O campo Nome é obrigatório',
+            'height.required' => 'O campo Altura é obrigatório',
+            'width.required' => 'O campo Largura é obrigatório',
+            'depth.required' => 'O campo Profundidade é obrigatório',
+            'value.required' => 'O campo Valor é obrigatório',
+            'name.min' => 'O campo Nome deve ter no mínimo 3 caracteres',
+            'id.min' => 'O campo Código deve ter no mínimo 3 caracteres',
+            'name.max' => 'O campo Nome do Produto deve ter no máximo 40 caracteres',
+            'id.max'=>'O campo Código  deve ter no maximo 2000 caracteres',
+            'comment.max' => 'O campo Comentario deve ter no máximo 2000 caracteres',
+            'height.numeric' =>  'O campo Altura permite apenas numeros',
+            'width.numeric' =>  'O campo  Largura permite apenas numeros',
+            'depth.numeric' =>  'O campo  Profundidade permite apenas numeros',
+            'value.numeric' =>  'O campo  Valor permite apenas numeros',
+        ];
+
+        $request->validate($rule, $feedback);
+
+
+            $product = Product::with('details')->find($id);
+
+            $product->name = $request->get('name');
+
+            $product->details->height = $request->get('height');
+
+            $product->details->width = $request->get('width');
+
+            $product->details->depth = $request->get('depth');
+
+            $product->details->value = $request->get('value');
+
+            $product->details->save();
+
+            $product -> save();
+
+
+        return redirect()->route('products.list');
     }
 
     /**

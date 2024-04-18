@@ -25,23 +25,30 @@
         </section>
         <section class="form-field">
             <label for="height">Altura do Produto</label>
-            <input type="number" id="height" name="height" placeholder="Digite a altura do produto" value="{{old('height')}}">
+            <input type="text" id="height" name="height" placeholder="Digite a altura do produto" value="{{old('height')}}">
             @if($errors->has('height'))
                 <p class="error-message"> {{ $errors->first('height') }}</p>
             @endif
         </section>
         <section class="form-field">
             <label for="width">Largura do Produto</label>
-            <input type="number" id="width" name="width" placeholder="Digite a largura do produto" value="{{old('width')}}">
+            <input type="text" id="width" name="width" placeholder="Digite a largura do produto" value="{{old('width')}}">
             @if($errors->has('width'))
                 <p class="error-message"> {{ $errors->first('width') }}</p>
             @endif
         </section>
         <section class="form-field">
             <label for="depth">Profundidade do Produto</label>
-            <input type="number" id="depth" name="depth" placeholder="Digite a profundidade do produto" value="{{old('depth')}}">
+            <input type="text" id="depth" name="depth" placeholder="Digite a profundidade do produto" value="{{old('depth')}}">
             @if($errors->has('depth'))
                 <p class="error-message"> {{ $errors->first('depth') }}</p>
+            @endif
+        </section>
+        <section class="form-field">
+            <label for="value">Valor</label>
+            <input type="text" id="value" name="value" placeholder="Digite o valor do produto" value="{{old('value')}}">
+            @if($errors->has('value'))
+                <p class="error-message"> {{ $errors->first('value') }}</p>
             @endif
         </section>
         <section class="form-field form-field-input-comments">
@@ -62,12 +69,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>Ótimo produto, estou muito satisfeito!</td>
-                </tr>
-                <tr>
-                    <td>Produto de alta qualidade, recomendo!</td>
-                </tr>
+
                 </tbody>
             </table>
             </details>

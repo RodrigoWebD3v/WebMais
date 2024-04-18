@@ -22,9 +22,7 @@ function addComment() {
 
     comment.value ="";
 }
-function envirparabase(){
-    CreateProduct()
-}
+
 function CreateProduct(){
 
     var id = document.getElementById('id');

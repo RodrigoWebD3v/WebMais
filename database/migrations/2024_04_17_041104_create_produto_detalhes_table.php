@@ -20,7 +20,9 @@ class CreateProdutoDetalhesTable extends Migration
             $table->float('height');
             $table->float('width');
             $table->float('depth');
+            $table->float('value');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

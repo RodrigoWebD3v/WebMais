@@ -17,6 +17,7 @@ class CreateProdutosTable extends Migration
             $table->string('id')->unique()->primary();
             $table->string('name')->unique();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
