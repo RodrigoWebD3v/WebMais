@@ -1,12 +1,11 @@
 @extends('app.layouts.basic')
 
-@section('titulo', 'Produtos')
-@section('conteudo')
-
+@section('title', 'Produtos')
+@section('content')
 
     <section style="max-width: 600px; margin: 0 auto; padding: 20px;">
         <h1 style="margin-top: 20px;">Cadastro de Produto</h1>
-        <form action="{{ route('products.update', ['id' => $product['id']])}}" method="POST">
+        <form action="{{ route('product.update', ['id' => $product['id']])}}" method="POST">
             @csrf
             @method('PUT')
             <section class="form-field">
@@ -77,7 +76,7 @@
                     </tbody>
                 </table>
             </details>
-            <button type="submit" onclick="CreateProduct()">Cadastrar Produto</button>
+            <button type="submit" onclick="CreateProduct()" class="button-form">Cadastrar Produto</button>
         </form>
     </section>
 @endsection

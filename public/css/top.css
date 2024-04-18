@@ -1,31 +1,30 @@
 .navbar {
-    background-color: #333;
+    background-color: #f2673c;
     overflow: hidden;
 }
 
-.navbar .container {
+.container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 10px 20px; /* Ajuste o preenchimento conforme necessário */
 }
 
-.navbar .logo {
+.logo {
     color: #fff;
     text-decoration: none;
     font-size: 24px;
 }
 
-.navbar .nav-links {
-    display: flex;
+.nav-links {
     list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
 }
 
-.navbar .nav-links li {
+.nav-item {
     margin-right: 20px;
-}
-
-.navbar .nav-links a {
     color: #fff;
     text-decoration: none;
 }

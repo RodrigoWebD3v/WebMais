@@ -1,13 +1,13 @@
 @extends('app.layouts.basic')
 
-@section('titulo', 'Produtos')
-@section('conteudo')
+@section('title', 'Produtos')
+@section('content')
 
 
 
 <section style="max-width: 600px; margin: 0 auto; padding: 20px;">
     <h1 style="margin-top: 20px;">Cadastro de Produto</h1>
-    <form action="{{ route('products.store')}}" method="POST">
+    <form action="{{ route('product.store')}}" method="POST">
         @csrf
         <section class="form-field">
             <label for="name">Nome do Produto</label>
@@ -73,7 +73,7 @@
                 </tbody>
             </table>
             </details>
-        <button type="submit" onclick="CreateProduct()">Cadastrar Produto</button>
+        <button type="submit"  class="button-form" onclick="CreateProduct()">Cadastrar Produto</button>
     </form>
 </section>
 @endsection

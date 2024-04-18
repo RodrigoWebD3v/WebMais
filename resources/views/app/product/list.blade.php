@@ -1,19 +1,19 @@
 @extends('app.layouts.basic')
 
-@section('titulo', 'Produtos')
-@section('conteudo')
+@section('title', 'Produtos')
+@section('content')
 
     <section class="menu-section">
         <ul class="menu-list">
-            <li class="menu-item"><a href="{{ route('products.new') }}" class="menu-link">Novo Produto</a></li>
+            <li class="menu-item"><a href="{{ route('product.new') }}" class="menu-link">Novo Produto</a></li>
         </ul>
     </section>
     <section class="sectionList">
     <h1>Produtos</h1>
-        <table  class="tableList">
+        <table  class="tableList" >
             <thead>
             <tr>
-                <th>ID</th>
+                <th>Código</th>
                 <th>Nome</th>
                 <th>Altura</th>
                 <th>Largura</th>
@@ -31,8 +31,14 @@
                     <td>{{ $product['details']['width'] }}</td>
                     <td>{{ $product['details']['depth'] }}</td>
                     <td>R${{ $product['details']['value'] }}</td>
-                    <td><a href="{{ route('products.edit',['id' => $product['id']])}}">Editar</a></td>
-                    <td><a href="{{ route('products.edit',['id' => $product['id']])}}">Excluir</a></td>
+                    <td><a href="{{ route('product.edit',['id' => $product['id']])}}" class="a-button-edit">Editar</a></td>
+                    <td>
+                        <form action="{{ route('product.delete',['id' => $product['id']])}}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="button-excluir">Excluir</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
             </tbody>

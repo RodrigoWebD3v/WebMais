@@ -13,12 +13,4 @@
     list-style: none;
     padding: 0;
 }
-.menu-item {
-    display: inline;
-}
-.menu-item:not(:first-child) {
-    margin-left: 20px;
-}
-.menu-link:hover {
-    color: #007bff;
-}
+

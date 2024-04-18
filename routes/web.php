@@ -13,14 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //product
-Route::get('/', 'ProductController@index')->name('products.list');
-Route::get('/produto', 'ProductController@create')->name('products.new');
-Route::get('/produto/{id}', 'ProductController@show')->name('products.details');
-Route::get('/produto/editar/{id}', 'ProductController@edit')->name('products.edit');
-Route::put('/produto/{id}', 'ProductController@update')->name('products.update');
-Route::post('/produto', 'ProductController@store')->name('products.store');
-Route::delete('/produto/{id}', 'ProductController@destroy')->name('product.delete');
-
+Route::prefix('admin')->group(function () {
+    Route::get('/', 'ProductController@index')->name('products.list');
+    Route::get('/produto', 'ProductController@create')->name('product.new');
+    Route::get('/produto/{id}', 'ProductController@show')->name('product.details');
+    Route::get('/produto/editar/{id}', 'ProductController@edit')->name('product.edit');
+    Route::put('/produto/{id}', 'ProductController@update')->name('product.update');
+    Route::post('/produto', 'ProductController@store')->name('product.store');
+    Route::delete('/produto/{id}', 'ProductController@destroy')->name('product.delete');
+});
 
 
 

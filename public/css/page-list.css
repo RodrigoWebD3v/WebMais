@@ -1,0 +1,44 @@
+.menu-item:hover{
+    background-color:rgba(0,123,255, 0.8);
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.menu-item {
+    padding: 5px;
+    display: inline;
+}
+
+.menu-item:not(:first-child) {
+    margin-left: 20px;
+}
+
+.menu-item:hover .menu-link {
+    color: white;
+}
+.button-excluir{
+        padding: 5px 20px;
+        background-color: #ef1934;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        border-radius: 10px;
+}
+
+.button-excluir:hover {
+    background-color: #671414;
+}
+.a-button-edit{
+    padding: 5px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.a-button-edit:hover {
+    background-color: #0056b3;
+}

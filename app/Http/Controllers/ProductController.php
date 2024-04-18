@@ -17,7 +17,7 @@ class ProductController extends Controller
     {
         $products = Product::with('details')->get();
 
-        return view('app.product.list', compact('products'));
+        return view('app.products.list', compact('products'));
     }
 
     /**
@@ -172,6 +172,24 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::with('details')->with('reviews')->find($id);
+
+        // Verifica se o produto foi encontrado
+        if (!$product) {
+            return redirect()->route('products.list')->with('error', 'Produto não encontrado.');
+        }
+
+        // Exclui as avaliações relacionadas
+        $product->reviews()->delete();
+
+        // Exclui os detalhes relacionados
+        $product->details()->delete();
+
+        // Exclui o produto
+        $product->delete();
+
+
+        return redirect()->route('products.list')->with('success', 'Produto excluído com sucesso.');
     }
+
 }
