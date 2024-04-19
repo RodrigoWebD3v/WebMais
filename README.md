@@ -18,7 +18,9 @@ recrutadores da empresa WebMais parte do meu potencial e valor como possivel con
  
  - No diretório do projeto, localize o arquivo .env.example.
  - Faça uma cópia deste arquivo e renomeie-o para .env .
- - Execute a seguinte Query no mysql : CREATE SCHEMA "webmais" DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ;
+ - Execute a seguinte Query no mysql :```
+CREATE SCHEMA webmais DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
  - No terminal, execute o comando php artisan key:generate para gerar a chave de aplicativo Laravel.
  - No terminal, execute o comando php artisan migrate para executar as migrações do banco de dados e criar as tabelas necessárias.
  - No terminal, execute o comando php artisan db:seed para executar as seeders e adicionar registros as tabelas.
