@@ -7,7 +7,7 @@
 
 <section style="max-width: 600px; margin: 0 auto; padding: 20px;">
     <h1 style="margin-top: 20px;">Cadastro de Produto</h1>
-    <form action="{{ route('product.store')}}" method="POST">
+    <form action="{{ route('product.store')}}" method="POST" id="formRegisterProduct">
         @csrf
         <section class="form-field">
             <label for="name">Nome do Produto</label>

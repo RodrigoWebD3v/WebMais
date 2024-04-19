@@ -43,5 +43,6 @@
             @endforeach
             </tbody>
         </table>
+        <section class="pagination-container">{{ $products->links() }}</section>
 </section>
 @endsection

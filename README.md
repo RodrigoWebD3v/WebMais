@@ -1,60 +1,59 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://bpprodstorage.blob.core.windows.net/bpblobcontainer/4010257/images/2f0853f7-9fc7-45bb-8fd7-967a9cb70815S6GD3hTIRNqyfRhYsjzKhA5J5aRX4xojn531xwBLC34m0lBnjg_YLO7YMdzmzyOiDc0XaAw9SrtmJFYelw=s0.Png" width="400"></a></p>
 
 <p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-## About Laravel
+## Sobre o projeto
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Projeto foi criado com o intuito de demonstrar aos 
+recrutadores da empresa WebMais parte do meu potencial e valor como possivel contratado.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Instalação
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+ - Navegue até o diretório do projeto Laravel clonado.
+ - Execute o comando composer install para instalar todas as dependências do projeto. Você poderá baixar clicando aqui: **[Composer](https://getcomposer.org/Composer-Setup.exe)**.
+ 
+ - No diretório do projeto, localize o arquivo .env.example.
+ - Faça uma cópia deste arquivo e renomeie-o para .env.
+ - Abra o arquivo .env em um editor de texto.
+ - Configure as informações do banco de dados MySQL:
+     DB_CONNECTION=mysql
+     DB_HOST=127.0.0.1
+     DB_PORT=3306
+     DB_DATABASE=nome_do_banco_de_dados
+     DB_USERNAME=nome_de_usuário_do_mysql
+     DB_PASSWORD=senha_do_usuário_do_mysql
+ - No terminal, execute o comando php artisan key:generate para gerar a chave de aplicativo Laravel.
+ - No terminal, execute o comando php artisan migrate para executar as migrações do banco de dados e criar as tabelas necessárias.
+ - No terminal, execute o comando php artisan db:seed para executar as seeders e adicionar registro as tabelas.
+ - Execute o comando php artisan serve para iniciar o servidor de desenvolvimento do Laravel.
+ - Abra um navegador da web e navegue para o endereço http://localhost:8000 (ou o endereço fornecido pelo comando php artisan serve) para acessar o projeto Laravel.
 
-## Learning Laravel
+IMPORTANTE: NECESSÁRIO PHP E MYSQL PARA RODAR O PROJETO
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## O PROJETO
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Assim como solicitado na requisição do projeto, foi criado um sistema de cadastro de produtos, onde deveria ser possivel o usuario escolher qual identificador do registro no momento do cadastro, cadastrar os detalhes do produto como largura, atlura e profundidade, o ponto chave seria a possibilidade de inserir varios comentarios para o produto. 
 
-## Laravel Sponsors
+Foram criadas 4 telas, a tela de login, cadastro de produto, edicao de produto, e listagem de produto.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+**Login:**
+- A tela de login possui uma regra de autenticação onde somente usuários cadastrados no banco de dados conseguem fazer login e se autenticar no sistema.
+- O usuário poderá fazer login usando o email (webmais@gmail.com) e a senha (senha123).
 
-### Premium Partners
+**Cadastro de Produto:**
+- A tela de cadastro de produto não permite que dois produtos no banco de dados tenham o mesmo nome ou o mesmo ID, para não haver registros repetidos, evitando armazenamento inútil.
+- A tela de cadastro permite a inserção de comentários. Esses comentários são apresentados em uma tabela abaixo à medida que são inseridos, para visualização do cliente.
+  
+**Listagem de Produtos:**
+- A tela de listagem de produtos a princípio é bem simples, mostrando as informações do produto, como valor, altura, largura, profundidade, nome e código. Também possui dois botões, um para edição e outro para exclusão.
+- O botão de exclusão realiza apenas um softDelete, adicionando uma data de deleção ao registro, fazendo com que o mesmo não apareça em consultas futuras, mas ainda exista no banco para históricos futuros, como notas fiscais e afins.
+- O botão de edição redireciona para uma tela de edição, onde serão realizadas as edições do produto.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+**Edição de Produto:**
+- Esta tela é basicamente a mesma que a de cadastro de produto. No entanto, nela não é permitido alterar o IDENTIFICADOR do produto, pois isso pode causar alguma inconsistência no banco de dados.
+- Comentários adicionados nessa tela seguirão a mesma função da tela de criação.
 
 ## License
 

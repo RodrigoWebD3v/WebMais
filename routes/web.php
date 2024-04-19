@@ -7,20 +7,27 @@ use Illuminate\Support\Facades\Route;
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| Aqui é onde você pode registrar as rotas da web para sua aplicação.
+| Essas rotas são carregadas pelo RouteServiceProvider dentro de um grupo que
+| contém o grupo de middleware "web". Agora crie algo incrível!
 |
 */
 
-//login
+// Rota para exibir o formulário de login
 Route::get('/login', 'LoginController@index')->name('login.index');
+
+// Rota para autenticar o usuário ao fazer login
 Route::post('/login', 'LoginController@logIn')->name('login.auth');
 
-//product
+// Rota raiz redireciona para a página de login
+Route::get('/', function () {
+    redirect()->route('login.index');
+});
+
+// Rotas relacionadas aos produtos, agrupadas com middleware de autenticação
 Route::middleware('authenticate')->prefix('admin')->group(function () {
     // Rota para exibir a lista de produtos
-    Route::get('/', 'ProductController@index')->name('products.list');
+    Route::get('/products/lista', 'ProductController@index')->name('products.list');
 
     // Rota para exibir o formulário de criação de um novo produto
     Route::get('/produto', 'ProductController@create')->name('product.new');
@@ -40,8 +47,6 @@ Route::middleware('authenticate')->prefix('admin')->group(function () {
     // Rota para excluir um produto específico
     Route::delete('/produto/{id}', 'ProductController@destroy')->name('product.delete');
 
+    // Rota para fazer logout
     Route::get('/logout', 'LoginController@logOut')->name('login.logout');
 });
-
-
-

@@ -16,7 +16,7 @@ class ProductController extends Controller
     public function index()
     {
         // Recupera todos os produtos com seus detalhes relacionados
-        $products = Product::with('details')->get();
+        $products = Product::with('details')->paginate(2);
 
         // Retorna a view listando os produtos
         return view('app.product.list', compact('products'));
