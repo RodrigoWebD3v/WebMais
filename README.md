@@ -11,20 +11,21 @@ recrutadores da empresa WebMais parte do meu potencial e valor como possivel con
 
 ## Instalação
 
+    IMPORTANTE: NECESSÁRIO PHP E MYSQL PARA RODAR O PROJETO
+
  - Navegue até o diretório do projeto Laravel clonado.
  - Execute o comando composer install para instalar todas as dependências do projeto. Você poderá baixar clicando aqui: **[Composer](https://getcomposer.org/Composer-Setup.exe)**.
  
  - No diretório do projeto, localize o arquivo .env.example.
- - Faça uma cópia deste arquivo e renomeie-o para .env.
- - Abra o arquivo .env em um editor de texto.
- - Execute essa query : CREATE SCHEMA "webmais" DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ;
+ - Faça uma cópia deste arquivo e renomeie-o para .env .
+ - Execute a seguinte Query no mysql : CREATE SCHEMA "webmais" DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ;
  - No terminal, execute o comando php artisan key:generate para gerar a chave de aplicativo Laravel.
  - No terminal, execute o comando php artisan migrate para executar as migrações do banco de dados e criar as tabelas necessárias.
- - No terminal, execute o comando php artisan db:seed para executar as seeders e adicionar registro as tabelas.
+ - No terminal, execute o comando php artisan db:seed para executar as seeders e adicionar registros as tabelas.
  - Execute o comando php artisan serve para iniciar o servidor de desenvolvimento do Laravel.
  - Abra um navegador da web e navegue para o endereço http://localhost:8000 (ou o endereço fornecido pelo comando php artisan serve) para acessar o projeto Laravel.
 
-IMPORTANTE: NECESSÁRIO PHP E MYSQL PARA RODAR O PROJETO
+
 
 ## O PROJETO
 
@@ -50,5 +51,4 @@ Foram criadas 4 telas, a tela de login, cadastro de produto, edicao de produto, 
 - Comentários adicionados nessa tela seguirão a mesma função da tela de criação.
 
 ## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+ [MIT license](https://opensource.org/licenses/MIT).
