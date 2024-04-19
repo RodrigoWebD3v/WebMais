@@ -16,8 +16,6 @@ function addComment() {
         cell1.innerHTML = comment.value;
         // Adiciona o comentário ao array de comentários
         comments.push(comment.value);
-        // Adiciona o comentário à lista de comentários
-        addCommentToList(comment.value);
     }
     // Limpa o campo de comentário após adicionar o comentário
     comment.value = "";

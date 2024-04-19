@@ -55,7 +55,6 @@
             <label for="comment">Comentario</label>
             <textarea id="comment" name="comment" rows="4" cols="50"></textarea>
             <button type="button" class="a-link" onClick="addComment()">Adicionar Comentario</button>
-{{--            <button type="button" class="a-link" onClick="envirparabase()">Enviar para a base</button>--}}
             @if($errors->has('comment'))
                 <p class="error-message"> {{ $errors->first('comment') }}</p>
             @endif

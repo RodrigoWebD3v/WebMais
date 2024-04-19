@@ -21,7 +21,7 @@ Route::post('/login', 'LoginController@logIn')->name('login.auth');
 
 // Rota raiz redireciona para a página de login
 Route::get('/', function () {
-    redirect()->route('login.index');
+    return redirect()->route('login.index');
 });
 
 // Rotas relacionadas aos produtos, agrupadas com middleware de autenticação
